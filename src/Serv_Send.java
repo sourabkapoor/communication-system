@@ -44,9 +44,7 @@ public class Serv_Send extends HttpServlet
            System.out.println("Driver Loaded");
           //  con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "ojasvi");
 
-	con=ConnectionProvider.getConnection();
-
-
+	        con=ConnectionProvider.getConnection();
             System.out.println("Connection created");
             stmt = con.createStatement();
             scon = getServletContext();
@@ -79,6 +77,7 @@ public class Serv_Send extends HttpServlet
             StringTokenizer stringtokenizer = new StringTokenizer(s, ",");
             
             mdate = String.valueOf(new Date());
+
             while(stringtokenizer.hasMoreTokens()) 
             {
                 str1 = stringtokenizer.nextToken();
@@ -94,6 +93,7 @@ public class Serv_Send extends HttpServlet
                 }
                 rs1.close();
                 st1.close();
+
                 if(bool && flag)
                 {
                     rs = stmt.executeQuery("Select max(mailid) from newcompose");
@@ -107,34 +107,29 @@ public class Serv_Send extends HttpServlet
                         i++;
                     }
                     rs.close();
-
-		session= httpservletrequest.getSession(false);
-
-		mch=(String)session.getAttribute("attach");
-
-		System.out.println("name of the file into serv_send>>>>>>>>>>>>>>>>>"+mch);
-
-
-
+            		session= httpservletrequest.getSession(false);
+            		mch=(String)session.getAttribute("attach");
+            		System.out.println("name of the file into serv_send>>>>>>>>>>>>>>>>>"+mch);
 
                     st2 = con.createStatement();
                     System.out.println("St2 successful");
                     int j = st2.executeUpdate("insert into newcompose values(" + i + ",'" + mfrom + "','" + str1 + "','" + s1 + "','" + s2 + "','" + s3 + "','"+mch+"','" + s5 + "','inbox','" + mdate + "',"+ml+")");
                     if(j > 0)
-                        servletoutputstream.println("<html><body bgcolor=white background='INDTEXTB.JPG' text=blue><font color=blue><h3><i>Message has been sent to " + str1 + " </i></h3></font>");
+                        servletoutputstream.println("<html><head><link rel=\"stylesheet\" type=\"text/css\" href=\"back.css\"></head><body><br><h2><i>Message has been sent to " + str1 + " </i></h2><br>");
                     st2.close();
                 }
+
             }
             str1 = "";
             i++;
             st3 = con.createStatement();
-            System.out.println("St3 successful");
-            int k = st3.executeUpdate("insert into newcompose values(" + i + ",'" + mfrom + "','" + s2 + "','" + s1 + "','','" + s3 + "','"+mch+"','" + s5 + "','inbox','" + mdate + "',"+ml+")");
+            System.out.println("news successful");
+            int k = st3.executeUpdate("insert into news values(" + mfrom + ",'" + s5 + "','" + mdate + ")");
             if(k > 0)
-                servletoutputstream.println("<html><body bgcolor=white background='INDTEXTB.JPG' text=blue><font color=blue><h3><i>Message has been sent to " + s2 + " </i></h3></font>");
+                servletoutputstream.println("<html><head><link rel=\"stylesheet\" type=\"text/css\" href=\"back.css\"></head><body></body>");
             st3.close();
             servletoutputstream.println("<form action=Serv_NewAddress><center>");
-            servletoutputstream.println("<h3><a href=Serv_Compose>Compose</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href=Serv_Inbox>Goto Inbox</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href=Serv_NewAddress>Add Address</a>");
+            servletoutputstream.println("<h3><a href=Serv_Compose>Compose</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href=Serv_Inbox>Go to Inbox</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href=Serv_NewAddress>Add Address</a>");
             servletoutputstream.println("</form></body></html>");
         }
         catch(Exception exception)

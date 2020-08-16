@@ -56,26 +56,24 @@ public class Serv_SeeMessage extends HttpServlet
                 String s4 = rs.getString(5);
                 String s5 = rs.getString(6);
                 String s6 = rs.getString(7);
-	String s10=rs.getString(10);	
+	            String s10=rs.getString(10);	
 
-		
-		System.out.println("attacchment got into the serv_seeMass "+s10);
+		        System.out.println("attacchment got into the serv_seeMass "+s10);
 
-
-	
                 int j = rs.getInt(8);
                 int k = rs.getInt(9);
-                servletoutputstream.println("<html><head><title>Welcome to Intra Organization Communication System</title></head>");
+                servletoutputstream.println("<html><head><title>Welcome to Intra Organization Communication System</title>");
+                servletoutputstream.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"back.css\"> </head> ");
                 servletoutputstream.println("<form name=fo>");
-                servletoutputstream.println("<body bgcolor=white background='INDTEXTB.JPG' text=blue><pre>");
+                servletoutputstream.println("<body><pre>");
                 //servletoutputstream.println("<img src=adv2.gif>");
                 servletoutputstream.println("<table cellpadding=15 ><tr><td><a href=Serv_Compose1?from=" + s + " & subj=" + s2 + ">Reply</a>");
-                servletoutputstream.println("</td><td><a href=Serv_Inbox>Inbox</a></td></tr></table><hr>");
-                servletoutputstream.println("<pre><br>" + s + " wrote a mail on " + s3 + "<br>");
-                servletoutputstream.println("<p>" + s6 + "</pre>");
-                servletoutputstream.println("<hr><table cellpadding=15><tr><td><a href=Serv_Compose1?from=" + s + "&subj=" + s2 + ">Reply</a>");
+                servletoutputstream.println("</td></tr></table><hr>");
+                servletoutputstream.println("<pre><br><b>" + s + "</b> wrote a mail on " + s3 + "<br>");
+                servletoutputstream.println("<h3>" + s6 + "</h3></pre>");
+                servletoutputstream.println("<hr>");
 
-	System.out.println(s10.equals("null"));
+	    System.out.println(s10.equals("null"));
 
 	if(s10.equals("null"))
 	{
@@ -88,11 +86,11 @@ public class Serv_SeeMessage extends HttpServlet
 	}
 
 
-                servletoutputstream.println("</td><td><a href=Serv_Inbox>Inbox</a></td></tr></table>");
-                //servletoutputstream.println("<center><img src=adv1.gif>");
-                st1 = con.createStatement();
-                int l = st1.executeUpdate("update newcompose set mailst=0 where mailid=" + k);
-                st1.close();
+            servletoutputstream.println("</td><td><a href=Serv_Inbox>Back to Inbox</a></td></tr></table>");
+            //servletoutputstream.println("<center><img src=adv1.gif>");
+            st1 = con.createStatement();
+            int l = st1.executeUpdate("update newcompose set mailst=0 where mailid=" + k);
+            st1.close();
             }
 
         }

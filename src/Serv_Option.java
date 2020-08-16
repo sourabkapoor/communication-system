@@ -52,7 +52,8 @@ public class Serv_Option extends HttpServlet
             }
             catch(Exception exception1) { }
             ServletOutputStream servletoutputstream = httpservletresponse.getOutputStream();
-            servletoutputstream.println("<html><head><title>Welcome to Intranet Mailing System></title></head>");
+            servletoutputstream.println("<html><head><title>Welcome to Intranet Mailing System></title>");
+            servletoutputstream.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"back.css\"> </head> ");
             servletoutputstream.println("<body background='background.jpg' text=blue><h1><center><blink>Change PassWord Screen</blink></center></h1>");
             servletoutputstream.println("<form name=form5 method=post action='Serv_ChangePwd'>");
             servletoutputstream.println("<pre><b><h4><center>Allows To Change PassWord</center></h4></b><BR><BR>");

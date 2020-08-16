@@ -38,8 +38,9 @@ public class Serv_Compose extends HttpServlet
             HttpSession httpsession = httpservletrequest.getSession(true);
             s = httpsession.getValue("name").toString();
             ServletOutputStream servletoutputstream = httpservletresponse.getOutputStream();
-            servletoutputstream.println("<html><title>Intra Organization Communication System</title>");
-            servletoutputstream.println("<body background='background.jpg' text=blue><center></center>");
+            servletoutputstream.println("<html><head><title>Intra Organization Communication System</title>");
+            servletoutputstream.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"back.css\"> </head> ");
+            servletoutputstream.println("<body text=blue><center></center>");
             servletoutputstream.println("<pre>");
             servletoutputstream.println("<form name=form4 method=post action='Serv_Send' enctype='multipart/form-data'>");
             servletoutputstream.println("To                  :<input type=text name=to required><br>");

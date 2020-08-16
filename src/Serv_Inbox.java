@@ -31,10 +31,7 @@ public class Serv_Inbox extends HttpServlet
         {
            // Class.forName("oracle.jdbc.driver.OracleDriver");
            // con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "uName", "Passwoed");
-
-
-	con=ConnectionProvider.getConnection();
-
+			con=ConnectionProvider.getConnection();
             st = con.createStatement();
             scon = getServletContext();
             HttpSession httpsession = httpservletrequest.getSession(true);
@@ -46,8 +43,8 @@ public class Serv_Inbox extends HttpServlet
             servletoutputstream.println("document.f.submit();}");
             servletoutputstream.println("function e()");
             servletoutputstream.println("{document.f.action='Serv_Enter';");
-            servletoutputstream.println("document.f.submit();}");
-            servletoutputstream.println("</script></head>");
+            servletoutputstream.println("document.f.submit();} </script>");
+            servletoutputstream.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"back.css\"> </head> ");
             servletoutputstream.println("<body background='background.jpg' background-size=100% text=navy>");
             servletoutputstream.println("<blink><h1><b><i>Inbox Screen of " + uname + " </i></b></h1></blink><br>");
             int i = 0;
@@ -57,8 +54,6 @@ public class Serv_Inbox extends HttpServlet
             servletoutputstream.println("<b>Total Messages: </b> " + i + "<br><br>");
             // for search button.
             //servletoutputstream.println("<form action='search'><input type=text name=search><input type=submit value=search></form><br>");
-            
-            
             servletoutputstream.println("<form name=f action='Serv_MoveFolder'>");
             servletoutputstream.println("<input type=button name=delete value='Delete' onClick='d()' style=\"width:100\">");
             servletoutputstream.println("<input type=reset name=deselect value='DeSelect' style=\"width:100\">");

@@ -51,14 +51,14 @@ public class Serv_DeleteMessage extends HttpServlet
                     if(y > 0)
                     {
                         rcnt++;
-                        servletoutputstream.println("<html><body bgcolor=white background='INDTEXTB.JPG' text=blue>");
+                        servletoutputstream.println("<html><head><link rel=\"stylesheet\" type=\"text/css\" href=\"back.css\"> </head><body>");
                         servletoutputstream.println("</body></html>");
                         httpservletresponse.setHeader("Refresh", "2;URL=Serv_SentMessages");
                     }
                 }
             }
 
-            servletoutputstream.println("<h3><i>" + rcnt + "Record(s) deleted </i></h3>");
+            servletoutputstream.println("<h2><i>" + rcnt + "Record(s) deleted </i></h2>");
             rcnt = 0;
         }
         catch(Exception exception)
